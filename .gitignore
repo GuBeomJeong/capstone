@@ -1,0 +1,11 @@
+google_scraper.db
+
+model_rnn.json
+
+rnn_.h5
+
+tokenizer.txt
+
+.idea
+
+__pycache__
