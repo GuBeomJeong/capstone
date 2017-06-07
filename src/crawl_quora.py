@@ -21,11 +21,19 @@ def test_google_search(search):
 
 #  title 에서 부제 제거
 def preprocess_title(title):
-    if len(title.split('-')) > 1:
-        title = title.split('-')[0]
-    elif len(title.split('|')) > 1:
-        title = title.split('|')[0]
-    p_title = title
+    splited_title = title.split('-')
+    p_title = ''
+    if len(splited_title) > 1:
+        if splited_title[len(splited_title)-1] == ' Quora':
+            # p_title = splited_title[0]
+            for i in range(len(splited_title)-1):
+                p_title += splited_title[i]
+        else:
+            p_title = title
+    else:
+        p_title = title
+    # elif len(title.split('|')) > 1:
+    #     title = title.split('|')[0]
     return p_title
 
 def get_config(**kwargs):
@@ -49,8 +57,8 @@ def crawl_data(keyword):
     file_num = 0
     output_filename = './crawling_output/output_{}.csv'.format(file_num)
     params = {
-        'keyword': keyword,
-        'num_pages': 1,
+        'keyword': keyword + ' site:www.quora.com',
+        'num_pages': 2,
         'filename': output_filename,
         }
 
@@ -82,7 +90,6 @@ def crawl_data(keyword):
 
                 # title 에서 부제 제거
                 # 'title - src site'와 같이 - or | 있으면 자르기
-                title = preprocess_title(title)
                 title = preprocess_title(title)
 
                 # dictionary element 만들어서 추가

@@ -2,6 +2,7 @@
 var $new_form = $('#form-container');
 var $new_form_crawl = $('#form-container-crawl');
 var $crawl_list = $('#crawl_list');
+var $google_list = $('#google_list');
 var $todo_list = $('#todo_list');
 
 // 할일을 입력해서 post로 보내는 함수 입니다.
@@ -31,6 +32,11 @@ function crawlData() {
                     '<label>' + datas[i][0] + '</label></div>' +
                     '</li><li><div class="view"><input class="toggle"><label>' +
 					''+"similarity: "+datas[i][1]+'</label></div></li>')
+				$google_list.prepend('<li><div class="view">' +
+                    '<input class="toggle">' +
+                    '<label>' + datas[i][2] + '</label></div>' +
+                    '</li><li><div class="view"><input class="toggle"><label>' +
+					''+"similarity: "+datas[i][3]+'</label></div></li>')
             }
 		}
 });

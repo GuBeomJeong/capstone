@@ -7,6 +7,7 @@ import rnn_test
 import json
 import crawl_quora
 import numpy
+from operator import itemgetter
 app = Flask(__name__)
 
 
@@ -34,13 +35,23 @@ def compare(name = None):
 def crawling():
     if request.method == 'POST':
         validate_list = []
+        v_list = []
         data = request.data.decode('utf-8')
         data = json.loads(data)
         context = data['context_data']
         title_list = crawl_quora.crawl_data(context)
         for title in title_list:
             validate = rnn_test.model_test(tk,loaded_model,context,title)
-            validate_list.append([title,str(validate)])
+            v_list.append(validate)
+            validate_list.append([title,validate,title,0])
+
+        validate_list.sort(key=itemgetter(1),reverse=False)
+        i=0
+        for list in validate_list:
+            list[1] = str(list[1])
+            list[2] = title_list[i]
+            list[3] = str(v_list[i])
+            i=i+1
 
         return json.dumps(validate_list)
     else:
