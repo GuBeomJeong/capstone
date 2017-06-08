@@ -32,7 +32,7 @@ function crawlData() {
                     '<label><a href ="'+datas[i][0]+'">' + datas[i][1] + '</a></label></div>' +
                     '</li><li><div class="view"><input class="toggle"><label>' +
 					''+"similarity: "+datas[i][2]+'</label></div></li>')
-				$google_list.prepend('<li><div class="view">' +
+				$google_list.append('<li><div class="view">' +
                     '<input class="toggle">' +
                     '<label><a href="'+datas[i][3]+'">' + datas[i][4] + '</a></label></div>' +
                     '</li><li><div class="view"><input class="toggle"><label>' +

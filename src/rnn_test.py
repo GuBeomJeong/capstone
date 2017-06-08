@@ -4,15 +4,15 @@ import pickle
 from keras.models import model_from_json
 
 def prepare():
-    f = open("tokenizer_sung.txt", "rb")
+    f = open("tokenizer.txt", "rb")
     tk = pickle.load(f)
     f.close()
-    json_file = open('model_cnn+rnn_20_0.2.json', 'r')
+    json_file = open('model_rnn.json', 'r')
     loaded_model_json = json_file.read()
     json_file.close()
     loaded_model = model_from_json(loaded_model_json)
     # load weights into new model
-    loaded_model.load_weights("weights_cnn+rnn_20_0.2.h5")
+    loaded_model.load_weights("rnn_.h5")
     print("Loaded model from disk")
     return tk,loaded_model
 
