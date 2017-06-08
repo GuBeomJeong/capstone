@@ -29,14 +29,14 @@ function crawlData() {
 			for(var i=0;i<datas.length;i++) {
                 $crawl_list.prepend('<li><div class="view">' +
                     '<input class="toggle">' +
-                    '<label>' + datas[i][0] + '</label></div>' +
+                    '<label><a href ="'+datas[i][0]+'">' + datas[i][1] + '</a></label></div>' +
                     '</li><li><div class="view"><input class="toggle"><label>' +
-					''+"similarity: "+datas[i][1]+'</label></div></li>')
+					''+"similarity: "+datas[i][2]+'</label></div></li>')
 				$google_list.prepend('<li><div class="view">' +
                     '<input class="toggle">' +
-                    '<label>' + datas[i][2] + '</label></div>' +
+                    '<label><a href="'+datas[i][3]+'">' + datas[i][4] + '</a></label></div>' +
                     '</li><li><div class="view"><input class="toggle"><label>' +
-					''+"similarity: "+datas[i][3]+'</label></div></li>')
+					''+"similarity: "+datas[i][5]+'</label></div></li>')
             }
 		}
 });

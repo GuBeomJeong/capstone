@@ -110,4 +110,4 @@ def crawl_data(keyword):
                 # 없으면 문장 그대로
             csv_file.close()
 
-    return title_list
+    return title_list,link_list

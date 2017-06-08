@@ -39,18 +39,21 @@ def crawling():
         data = request.data.decode('utf-8')
         data = json.loads(data)
         context = data['context_data']
-        title_list = crawl_quora.crawl_data(context)
+        title_list,link_list = crawl_quora.crawl_data(context)
+        i=0
         for title in title_list:
             validate = rnn_test.model_test(tk,loaded_model,context,title)
             v_list.append(validate)
-            validate_list.append([title,validate,title,0])
+            validate_list.append([link_list[i],title,validate,"",title,0])
+            i = i+1
 
-        validate_list.sort(key=itemgetter(1),reverse=False)
+        validate_list.sort(key=itemgetter(2),reverse=False)
         i=0
         for list in validate_list:
-            list[1] = str(list[1])
-            list[2] = title_list[i]
-            list[3] = str(v_list[i])
+            list[2] = str(list[2])
+            list[3] = link_list[i]
+            list[4] = title_list[i]
+            list[5] = str(v_list[i])
             i=i+1
 
         return json.dumps(validate_list)
